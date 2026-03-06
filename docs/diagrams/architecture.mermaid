@@ -1,0 +1,14 @@
+graph TD
+    A[LazyDocumentLoader] -->|uses| M[Mutex]
+    B[LazyStringLoader] -->|extends| A
+    C[FlowLazyLoader] -->|uses| M
+    C -->|uses| SF[MutableStateFlow]
+    D[platformSynchronized] -->|JVM| S[synchronized]
+    D -->|iOS/Wasm| BL[block]
+
+    subgraph "digital.vasic.concurrency"
+        A
+        B
+        C
+        D
+    end

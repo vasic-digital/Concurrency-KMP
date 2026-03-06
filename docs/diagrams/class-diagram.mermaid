@@ -1,0 +1,29 @@
+classDiagram
+    class LazyDocumentLoader~T~ {
+        #chunkSize: Int
+        -mutex: Mutex
+        -_chunks: Map
+        -totalChunks: Int
+        +initialize(totalSize)
+        +getChunk(index): T?
+        +preloadAround(index, range)
+        +clear()
+        +getMemoryUsage(): Long
+        #loadChunk(index): T?
+    }
+
+    class LazyStringLoader {
+        -content: String
+        +getLines(startLine, endLine): List
+        #loadChunk(index): String?
+    }
+
+    class FlowLazyLoader~T~ {
+        -chunkSize: Int
+        +content: StateFlow
+        +loadMore(items)
+        +getVisibleRange(start, end, buffer): IntRange
+        +cleanup()
+    }
+
+    LazyStringLoader --|> LazyDocumentLoader

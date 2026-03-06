@@ -1,0 +1,18 @@
+sequenceDiagram
+    participant Client
+    participant LazyStringLoader
+    participant Mutex
+    participant Cache
+
+    Client->>LazyStringLoader: getChunk(index)
+    LazyStringLoader->>Mutex: withLock
+    Mutex-->>LazyStringLoader: acquired
+    LazyStringLoader->>Cache: check cache
+    alt Cache hit
+        Cache-->>LazyStringLoader: cached chunk
+        LazyStringLoader-->>Client: chunk
+    else Cache miss
+        LazyStringLoader->>LazyStringLoader: loadChunk(index)
+        LazyStringLoader->>Cache: store chunk
+        LazyStringLoader-->>Client: chunk
+    end
