@@ -1,11 +1,9 @@
-# AGENTS.md - Concurrency-KMP
+# Constitution — Concurrency-KMP
 
-## Agent Capabilities
-
-1. **Lazy document loading** - Load large documents in memory-efficient chunks
-2. **Platform synchronization** - Cross-platform synchronized blocks
-3. **Flow-based UI loading** - Observable content loading via StateFlow
-
+This is the project constitution for Concurrency-KMP. It records the inviolable
+rules that govern all changes to this repository. Project-specific
+articles MAY be appended below the universal block, but the universal
+block itself MUST NOT be weakened or removed.
 
 
 ---
